@@ -78,8 +78,6 @@ def main():
     while True:
         event, values = window.read()     # wake every hour
         if event == sg.WIN_CLOSED or event == 'Exit':
-            dic = get_current_dict(values, window)
-            fgen.write_json(dic)
             break
         if event == 'Add Item':
             window.metadata += 1
@@ -91,8 +89,8 @@ def main():
         dic = get_current_dict(values, window)
         # Gerar pdf
         if event == 'Gen pdf':
-            fgen.write_json(dic)
             try:
+                fgen.write_json(dic)
                 fgen.create_pdf(dic)
                 sg.popup('\nArquivo pdf criado com sucesso!\n')
                 break

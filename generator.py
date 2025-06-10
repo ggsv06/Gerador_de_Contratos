@@ -4,12 +4,18 @@ from docxtpl import DocxTemplate
 from docx2pdf import convert
 import os
 import json
+import sys
 
-path_config = Path(__file__).parent / "config"  
+if getattr(sys, 'frozen', False):
+    # Bundled .exe – use user data folder (e.g., next to the .exe)
+    base_path = Path(sys.executable).parent
+else:
+    base_path = Path(__file__).parent
+
+path_config = base_path / "config"
 
 def write_json(dic):
-    # Escreve dic em cima do .json anterior
-    # JSON aberto
+    path_config.mkdir(exist_ok=True)  # Ensure folder exists
     with open(path_config / "dic.json", 'w') as file:
         json.dump(dic, file)
 
