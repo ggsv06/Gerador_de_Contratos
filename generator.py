@@ -1,7 +1,7 @@
 from pathlib import Path
 from datetime import datetime
 from docxtpl import DocxTemplate
-from docx2pdf import convert
+# from docx2pdf import convert
 import os
 import json
 import sys
@@ -38,14 +38,29 @@ def create_pdf(dic):
     now = datetime.now()
 
     # Documento aberto
-    doc = DocxTemplate(path_config / "Contrato_template.docx")
+    # doc = DocxTemplate(path_config / "Contrato_template.docx")
 
     # Gerador de .docx e conversor para .pdf
-    final_path = Path(__file__).parent / f"Contrato {now.strftime(f'%H_%M_%S')}.docx"
+    # final_path = Path(__file__).parent / f"Contrato {now.strftime(f'%H_%M_%S')}.docx"
+    # doc.render(dic)
+    # doc.save(final_path)
+    # convert(final_path)
+    # os.remove(final_path)
+
+# Documento aberto
+    doc = DocxTemplate(path_config / "Contrato_template.docx")
+
+    # Definir caminho de saída adequado para .docx
+    if getattr(sys, 'frozen', False):
+        final_path = Path(sys.executable).parent / f"Contrato {now.strftime('%H_%M_%S')}.docx"
+    else:
+        final_path = Path(__file__).parent / f"Contrato {now.strftime('%H_%M_%S')}.docx"
+
+    # Gerar .docx e converter para .pdf
     doc.render(dic)
     doc.save(final_path)
-    convert(final_path)
-    os.remove(final_path)
+    # convert(final_path)
+
 
 if __name__ == '__main__':
     create_pdf()

@@ -74,6 +74,7 @@ def main():
     window = make_window(initial_rows)
     for i, key in enumerate(l_keys):
         window[('-DESC-', i, 0)].update(key)
+        window[('-DESC-', i, 1)].update(pre_dic[key])
 
     while True:
         event, values = window.read()     # wake every hour
@@ -111,4 +112,5 @@ def main():
                 window[('-DESC-', i, 0)].update(key)
                 window[('-DESC-', i, 1)].update('')
     window.close()
+    sys.exit()
 main()
