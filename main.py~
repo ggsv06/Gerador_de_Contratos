@@ -109,13 +109,10 @@ def main():
         if event == 'Add Item':
             window.metadata += 1
             window.extend_layout(window['-TRACKING SECTION-'], [item_row(window.metadata)])
-            
-            # Forçar atualização de altura da coluna
-            window['-TRACKING SECTION-'].Widget.canvas.configure(scrollregion=window['-TRACKING SECTION-'].Widget.canvas.bbox("all"))
             # Corrigir o scroll aqui:
             canvas = window['-TRACKING SECTION-'].Widget.canvas
-            canvas.configure(scrollregion=canvas.bbox("all"))  # Atualiza área visível
-            canvas.yview_moveto(1)  # Scrolla para o final
+            canvas.update_idletasks()
+            canvas.yview_moveto(1)
         elif event[0] == '-DEL-':
             window[('-ROW-', event[1])].update(visible=False)
 
@@ -141,12 +138,9 @@ def main():
             for i, key in enumerate(l_keys):
                 if ('-ROW-', i) not in window.AllKeysDict:
                     window.extend_layout(window['-TRACKING SECTION-'], [item_row(i)])
-                    # Forçar atualização de altura da coluna
-                    window['-TRACKING SECTION-'].Widget.canvas.configure(scrollregion=window['-TRACKING SECTION-'].Widget.canvas.bbox("all"))
-                    
                     canvas = window['-TRACKING SECTION-'].Widget.canvas
-                    canvas.configure(scrollregion=canvas.bbox("all"))  # Atualiza área visível
-                    canvas.yview_moveto(1)  # Scrolla para o final
+                    canvas.update_idletasks()
+                    canvas.yview_moveto(1)                
                 window[('-ROW-', i)].update(visible=True)
                 window[('-DESC-', i, 0)].update(key)
                 window[('-DESC-', i, 1)].update('')
