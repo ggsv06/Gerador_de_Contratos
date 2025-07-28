@@ -1,3 +1,7 @@
 /__pycache__
 /env
 /build
+main.py~
+.main.py.un~
+generator.py~
+.generator.py.un~
