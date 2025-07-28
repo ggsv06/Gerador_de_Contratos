@@ -96,7 +96,7 @@ def main():
                 sg.popup('\nArquivo pdf criado com sucesso!\n')
                 break
             except:
-                sg.popup('\nOcorreu um erro!\n\nVerifique se o arquivo "Contrato_template.docx" existe na pasta config.\nVerifique se as chaves estão corretas {{CHAVE}}.\nExemplo:\n\n\tMeu nome é {{NOME}}, nasci no dia {{DATA}}, ...\n\nVerifique se os campos deste programa estão de acordo.\nPrimeira coluna: variáveis contidas nas chaves\nSegunda coluna: valores para as variáveis\nExemplo:\n\n\tNOME\tGian\n\tDATA\t03/02/06\n', icon=icon_path)
+                sg.popup('\nOcorreu um erro!\n\nVerifique se o arquivo "Contrato_template.docx" existe na pasta config.\nVerifique se as chaves estão corretas {{CHAVE_1}}. Note que qualquer chave não pode conter espaços, utilize "_" no lugar.\nExemplo:\n\n\tMeu nome é {{NOME}}, sou {{ESTADO_CIVIL}}, ...\n\nVerifique se os campos deste programa estão de acordo.\nPrimeira coluna: variáveis contidas nas chaves\nSegunda coluna: valores para as variáveis\nExemplo:\n\n\tNOME\t\t\tGian\n\tESTADO_CIVIL\tSolteiro\n', icon=icon_path)
 
         if event == 'Cancel':
             for i in range(window.metadata + 1):
